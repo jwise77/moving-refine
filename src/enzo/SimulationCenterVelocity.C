@@ -92,6 +92,10 @@ int SimulationCenterVelocity(LevelHierarchyEntry *LevelArray[], TopGridData *Met
   } // ENDFOR level
   
   
+  /* Turn off this flag because we don't want to recenter on a restart */
+
+  CenterVelocityOnRefineRegion = INT_UNDEFINED;
+
   return SUCCESS;
 
 }
