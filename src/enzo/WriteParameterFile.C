@@ -343,6 +343,9 @@ int WriteParameterFile(FILE *fptr, TopGridData &MetaData, char *name = NULL)
   WriteListOfFloats(fptr, MetaData.TopGridRank, DomainRightEdge);
   fprintf(fptr, "GridVelocity           = ");
   WriteListOfFloats(fptr, MetaData.TopGridRank, GridVelocity);
+  fprintf(fptr, "CenterVelocityOnRefineRegion = %"ISYM"\n", 
+	  CenterVelocityOnRefineRegion);
+
   fprintf(fptr, "RefineRegionAutoAdjust = %"ISYM"\n", RefineRegionAutoAdjust);
   fprintf(fptr, "RefineRegionLeftEdge   = ");
   WriteListOfFloats(fptr, MetaData.TopGridRank, RefineRegionLeftEdge);

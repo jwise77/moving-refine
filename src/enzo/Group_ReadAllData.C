@@ -468,7 +468,6 @@ int Group_ReadAllData(char *name, HierarchyEntry *TopGrid, TopGridData &MetaData
 
   if (HierarchyFileInputFormat % 2 == 0 && io_log) 
       fclose(log_fptr);
-  
 
   return SUCCESS;
 }

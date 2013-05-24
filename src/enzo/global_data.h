@@ -222,6 +222,7 @@ EXTERN FLOAT DomainLeftEdge[MAX_DIMENSION], DomainRightEdge[MAX_DIMENSION];
 /* Velocity of entire computational domain. */
 
 EXTERN float GridVelocity[MAX_DIMENSION];
+EXTERN int CenterVelocityOnRefineRegion;
 
 /* HDF names for labels and scales. */
 

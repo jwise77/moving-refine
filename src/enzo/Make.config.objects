@@ -305,6 +305,7 @@ OBJS_CONFIG_LIB = \
 	Grid_AddParticlesFromList.o \
 	Grid_AddRandomForcing.o \
 	Grid_AddToBoundaryFluxes.o \
+	Grid_AdjustVelocity.o \
 	Grid_AllocateGrids.o \
 	Grid_AnalyzeTrackPeaks.o \
 	Grid_AppendForcingToBaryonFields.o \
@@ -346,6 +347,7 @@ OBJS_CONFIG_LIB = \
 	Grid_ComputeAccelerationField.o \
 	Grid_ComputeAccelerations.o \
 	Grid_ComputeAccelerationsFromExternalPotential.o \
+	Grid_ComputeAverageVelocity.o \
 	Grid_ComputeCellCenteredField.o \
 	Grid_ComputeConductionTimeStep.o \
 	Grid_ComputeCoolingTime.o \
@@ -771,6 +773,7 @@ OBJS_CONFIG_LIB = \
 	ShellSortAndDrag.o \
         ShockInABoxInitialize.o \
         ShockPoolInitialize.o \
+	SimulationCenterVelocity.o \
         sink_maker.o \
         smooth_deposit.o \
         smooth_deposit_c.o \

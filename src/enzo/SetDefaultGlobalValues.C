@@ -236,6 +236,7 @@ int SetDefaultGlobalValues(TopGridData &MetaData)
     MustRefineRegionRightEdge[dim] = 1.0;
   }
 
+  CenterVelocityOnRefineRegion = INT_UNDEFINED;
   MultiRefineRegionMaximumOuterLevel = INT_UNDEFINED;
   MultiRefineRegionMinimumOuterLevel = INT_UNDEFINED;
   for (i = 0; i < MAX_STATIC_REGIONS; i++) {

@@ -37,21 +37,21 @@ int CommunicationBroadcastValue(int *Value, int BroadcastProcessor);
 
 /* Internal routines */
 
-float gas_velocity(FLOAT r, FLOAT cdensity, 
-		  FLOAT totaldmmass, FLOAT rs, FLOAT hs, 
-		  FLOAT dmc, FLOAT router);
+float gas_velocity(float r, float cdensity, 
+		  float totaldmmass, float rs, float hs, 
+		  float dmc, float router);
 	     
-float average_density(FLOAT r, FLOAT cdensity, FLOAT rs, FLOAT hs, 
-		      FLOAT cellwidth, FLOAT xpos, FLOAT ypos, FLOAT zpos);
+float average_density(float r, float cdensity, float rs, float hs, 
+		      float cellwidth, float xpos, float ypos, float zpos);
 
 
-int grid::RotatingDiskInitializeGrid(FLOAT RDScaleRadius,
-				     FLOAT RDScaleHeight, 
-				     FLOAT RDTemperature,
-				     FLOAT RDDMConcentration, 
-				     FLOAT RDTotalDMMass,
-				     FLOAT RDCentralDensity,
-				     FLOAT RDOuterRadius)
+int grid::RotatingDiskInitializeGrid(float RDScaleRadius,
+				     float RDScaleHeight, 
+				     float RDTemperature,
+				     float RDDMConcentration, 
+				     float RDTotalDMMass,
+				     float RDCentralDensity,
+				     float RDOuterRadius)
 {
 
   
@@ -200,8 +200,8 @@ int grid::RotatingDiskInitializeGrid(FLOAT RDScaleRadius,
 }
 
 
-float average_density(FLOAT r, float cdensity, float rs, float hs, 
-	     FLOAT cellwidth, FLOAT xpos, FLOAT ypos, FLOAT zpos)
+float average_density(float r, float cdensity, float rs, float hs, 
+	     float cellwidth, float xpos, float ypos, float zpos)
 {
 	// routine to return the average gas density in a grid cell
 	// Routine samples density in r plane of grid and averages
@@ -227,8 +227,8 @@ float average_density(FLOAT r, float cdensity, float rs, float hs,
 	
 }
 
-float gas_velocity(FLOAT radius, FLOAT cdensity, FLOAT totaldmmass, FLOAT rscale, 
-		   FLOAT hscale, FLOAT DMC, FLOAT router)
+float gas_velocity(float radius, float cdensity, float totaldmmass, float rscale, 
+		   float hscale, float DMC, float router)
 {
 
   /* calculates the circular velocity from mass of gas and dark matter */

@@ -61,6 +61,8 @@
  
 int RebuildHierarchy(TopGridData *MetaData,
 		     LevelHierarchyEntry *LevelArray[], int level);
+int SimulationCenterVelocity(LevelHierarchyEntry *LevelArray[], 
+			     TopGridData *MetaData);
 
 int EvolveLevel(TopGridData *MetaData, LevelHierarchyEntry *LevelArray[],
 		int level, float dtLevelAbove, ExternalBoundary *Exterior
@@ -181,6 +183,11 @@ int EvolveHierarchy(HierarchyEntry &TopGrid, TopGridData &MetaData,
   // was the default from before.
   if (MetaData.CPUTime > 1e2*MetaData.StopCPUTime)
     MetaData.CPUTime = 0.0;
+
+  /* Adjust the reference frame to be centered on the innermost refine region */
+
+  if (CenterVelocityOnRefineRegion != INT_UNDEFINED)
+    SimulationCenterVelocity(LevelArray, &MetaData);
  
   /* Attach RandomForcingFields to BaryonFields temporarily to apply BCs */
  

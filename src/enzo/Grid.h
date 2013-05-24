@@ -2298,6 +2298,13 @@ int zEulerSweep(int j, int NumberOfSubgrids, fluxes *SubgridFluxes[],
   int ShearingBoxStratifiedInitializeGrid(float ThermalMagneticRatio, float fraction, 
 				float ShearingGeometry, 
 				int InitialMagneticFieldConfiguration);
+
+  /* Refine region velocity-centering routines */
+
+  int AdjustVelocity(float *velocity);
+  int ComputeAverageVelocity(float *velocity, float &total_mass);
+
+
 // -------------------------------------------------------------------------
 // Analysis functions for AnalysisBaseClass and it's derivatives.
 //
