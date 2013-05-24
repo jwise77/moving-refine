@@ -26,6 +26,9 @@
  
 int grid::AdjustVelocity(float *velocity)
 {
+  
+  if (ProcessorNumber != MyProcessorNumber)
+    return SUCCESS;
 
   int i, j, k, dim, index;
   float TotalEnergy;

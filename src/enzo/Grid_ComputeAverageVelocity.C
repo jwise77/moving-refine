@@ -27,6 +27,9 @@
 int grid::ComputeAverageVelocity(float *velocity, float &total_mass)
 {
 
+  if (ProcessorNumber != MyProcessorNumber)
+    return SUCCESS;
+
   int i, j, k, dim, index, region;
   FLOAT CellVolume, CellMass;
 
