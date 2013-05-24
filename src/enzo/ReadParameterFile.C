@@ -346,7 +346,7 @@ int ReadParameterFile(FILE *fptr, TopGridData &MetaData, float *Initialdt)
 		  DomainRightEdge+1, DomainRightEdge+2);
     ret += sscanf(line, "GridVelocity          = %"FSYM" %"FSYM" %"FSYM, GridVelocity,
 		  GridVelocity+1, GridVelocity+2);
-    ret += sscanf(line, "CenterVelocityOnRefineRegion = %"ISYM, CenterVelocityOnRefineRegion);
+    ret += sscanf(line, "CenterVelocityOnRefineRegion = %"ISYM, &CenterVelocityOnRefineRegion);
     
     ret += sscanf(line, "RefineRegionAutoAdjust = %"ISYM, &RefineRegionAutoAdjust);
     ret += sscanf(line, "RefineRegionLeftEdge  = %"PSYM" %"PSYM" %"PSYM,
