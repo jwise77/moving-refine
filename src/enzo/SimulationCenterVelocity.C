@@ -74,6 +74,8 @@ int SimulationCenterVelocity(LevelHierarchyEntry *LevelArray[], TopGridData *Met
 
   /* Divide out mass-weighting */
 
+  CommunicationAllSumValues(velocity, 3);
+  CommunicationAllSumValues(&total_mass, 1);
   for (dim = 0; dim < MAX_DIMENSION; dim++)
     velocity[dim] /= total_mass;
 
