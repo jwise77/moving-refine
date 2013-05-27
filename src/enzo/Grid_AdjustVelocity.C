@@ -24,15 +24,18 @@
 #include "ExternalBoundary.h"
 #include "Grid.h"
  
-int grid::AdjustVelocity(float *velocity)
+int grid::AdjustVelocity(const float *velocity)
 {
   
   if (ProcessorNumber != MyProcessorNumber)
     return SUCCESS;
 
-  int i, j, k, dim, index;
+  int i, j, k, dim, index, size;
   float TotalEnergy;
   
+  for (dim = 0, size = 1; dim < GridRank; dim++)
+    size *= GridDimension[dim];
+
   /* Find fields: density, total energy, velocity1-3. */
 
   int DensNum, GENum, Vel1Num, Vel2Num, Vel3Num, TENum;
@@ -41,26 +44,18 @@ int grid::AdjustVelocity(float *velocity)
     ENZO_FAIL("Error in IdentifyPhysicalQuantities.\n");
   }
 
-  for (k = GridStartIndex[2]; k <= GridEndIndex[2]; k++) {
-    for (j = GridStartIndex[1]; j <= GridEndIndex[1]; j++) {
-      index = GRIDINDEX_NOGHOST(GridStartIndex[0], j, k);
-      for (i = GridStartIndex[0]; i <= GridEndIndex[0]; i++, index++) {
+  for (index = 0; index < size; index++) {
+    TotalEnergy = 0.0;
+    for (dim = 0; dim < GridRank; dim++) {
+      BaryonField[Vel1Num+dim][index] -= velocity[dim];
+      TotalEnergy += BaryonField[Vel1Num+dim][index] * BaryonField[Vel1Num+dim][index];
+    }
 
-	TotalEnergy = 0.0;
-	for (dim = 0; dim < GridRank; dim++) {
-	  BaryonField[Vel1Num+dim][index] -= velocity[dim];
-	  TotalEnergy += BaryonField[Vel1Num+dim][index] * BaryonField[Vel1Num+dim][index];
-	}
-
-	if (DualEnergyFormalism == TRUE)
-	  BaryonField[TENum][index] = 0.5*TotalEnergy + BaryonField[GENum][index];
-	else
-	  BaryonField[TENum][index] = 0.5*TotalEnergy;
-	  
-
-      } // ENDFOR i
-    } // ENDFOR j
-  } // ENDFOR k
+    if (DualEnergyFormalism == TRUE)
+      BaryonField[TENum][index] = 0.5*TotalEnergy + BaryonField[GENum][index];
+    else
+      BaryonField[TENum][index] = 0.5*TotalEnergy;
+  } // ENDFOR index
 
   return SUCCESS;
 

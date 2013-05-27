@@ -2301,7 +2301,7 @@ int zEulerSweep(int j, int NumberOfSubgrids, fluxes *SubgridFluxes[],
 
   /* Refine region velocity-centering routines */
 
-  int AdjustVelocity(float *velocity);
+  int AdjustVelocity(const float *velocity);
   int ComputeAverageVelocity(float *velocity, float &total_mass);
 
 

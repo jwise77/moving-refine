@@ -184,11 +184,6 @@ int EvolveHierarchy(HierarchyEntry &TopGrid, TopGridData &MetaData,
   if (MetaData.CPUTime > 1e2*MetaData.StopCPUTime)
     MetaData.CPUTime = 0.0;
 
-  /* Adjust the reference frame to be centered on the innermost refine region */
-
-  if (CenterVelocityOnRefineRegion != INT_UNDEFINED)
-    SimulationCenterVelocity(LevelArray, &MetaData);
- 
   /* Attach RandomForcingFields to BaryonFields temporarily to apply BCs */
  
   if (RandomForcing) { //AK
@@ -289,6 +284,12 @@ int EvolveHierarchy(HierarchyEntry &TopGrid, TopGridData &MetaData,
   }
 
   PrintMemoryUsage("1st rebuild");
+
+  /* Adjust the reference frame to be centered on the innermost refine region */
+
+  if (CenterVelocityOnRefineRegion != INT_UNDEFINED) {
+    SimulationCenterVelocity(LevelArray, &MetaData);
+  }
  
   /* Particle Splitter. Split particles into 13 (=1+12) child particles */
   

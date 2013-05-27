@@ -43,6 +43,7 @@ int SimulationCenterVelocity(LevelHierarchyEntry *LevelArray[], TopGridData *Met
 
   int i, dim, level;
   LevelHierarchyEntry *ThisGrid;
+  HierarchyEntry *SubGrid;
   float velocity[MAX_DIMENSION];
   float total_mass = 0.0;
 
@@ -66,6 +67,13 @@ int SimulationCenterVelocity(LevelHierarchyEntry *LevelArray[], TopGridData *Met
 
   for (level = 0; level < MAX_DEPTH_OF_HIERARCHY; level++) {
     for (ThisGrid = LevelArray[level]; ThisGrid; ThisGrid = ThisGrid->NextGridThisLevel) {
+
+      // Create child grid mask
+      ThisGrid->GridData->ZeroSolutionUnderSubgrid(NULL, ZERO_UNDER_SUBGRID_FIELD);
+      for (SubGrid = ThisGrid->GridHierarchyEntry->NextGridNextLevel; SubGrid;
+	   SubGrid = SubGrid->NextGridThisLevel) {
+	ThisGrid->GridData->ZeroSolutionUnderSubgrid(SubGrid->GridData, ZERO_UNDER_SUBGRID_FIELD);
+      }
 
       ThisGrid->GridData->ComputeAverageVelocity(velocity, total_mass);
 
