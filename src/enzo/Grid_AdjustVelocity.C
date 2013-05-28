@@ -30,7 +30,7 @@ int grid::AdjustVelocity(const float *velocity)
   if (ProcessorNumber != MyProcessorNumber)
     return SUCCESS;
 
-  int i, j, k, dim, index, size;
+  int i, dim, index, size;
   float TotalEnergy;
   
   for (dim = 0, size = 1; dim < GridRank; dim++)
@@ -43,6 +43,14 @@ int grid::AdjustVelocity(const float *velocity)
 				       Vel3Num, TENum) == FAIL) {
     ENZO_FAIL("Error in IdentifyPhysicalQuantities.\n");
   }
+
+  /* Particles */
+
+  for (dim = 0; dim < GridRank; dim++)
+    for (i = 0; i < NumberOfParticles; i++)
+      ParticleVelocity[dim][i] -= velocity[dim];
+
+  /* Baryons */
 
   for (index = 0; index < size; index++) {
     TotalEnergy = 0.0;
